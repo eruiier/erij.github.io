@@ -123,6 +123,26 @@ end)
      end
  end
  
+local function filterPathPoints()
+    local filteredPoints = {}
+
+    for _, pt in ipairs(pathPoints) do
+        local exactMatch = false
+
+        for _, bondPos in ipairs(foundBonds) do
+            if bondPos == pt then  -- Ensure exact matches are removed
+                exactMatch = true
+                break
+            end
+        end
+
+        if not exactMatch then
+            table.insert(filteredPoints, pt)
+        end
+    end
+
+    return filteredPoints
+end
 
 
  
