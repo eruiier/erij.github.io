@@ -10,7 +10,7 @@ local TweenService = game:GetService("TweenService")
  local camera = workspace.CurrentCamera
  
  local foundBonds = {}
- local speed = 6000
+ local speed = 8000
 
 task.spawn(function()
     wait(20) -- Wait 20 seconds before starting
@@ -28,7 +28,7 @@ end)
 
 -- Bond collection (delayed by 25 seconds)
 task.spawn(function()
-    task.wait(22) -- Wait 25 seconds before starting bond collection
+    task.wait(17) -- Wait 25 seconds before starting bond collection
 
     while true do
         task.wait(0.3) -- Check every 0.3 seconds
@@ -144,8 +144,8 @@ end)
  
      scanConn:Disconnect()
  
-     if tick() - startTime < 22 then
-         task.wait(22 - (tick() - startTime))
+     if tick() - startTime < 17 then
+         task.wait(17 - (tick() - startTime))
      end
  
      pcall(function()
