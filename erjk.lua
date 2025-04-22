@@ -54,8 +54,8 @@ end)
  local player = game.Players.LocalPlayer
  local camera = workspace.CurrentCamera
  
- local moveSpeed = 4 -- Increased speed for faster oscillation
- local amplitude = 5 -- Adjust the range of movement
+ local moveSpeed = 8 -- Increased speed for faster oscillation
+ local amplitude = 6 -- Adjust the range of movement
  local time = 0 -- Keeps track of time for oscillation
  
  -- Ensure camera stays in first-person mode
