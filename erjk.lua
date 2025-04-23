@@ -192,7 +192,7 @@ end
              pcall(function()
                  hrp.CFrame = CFrame.new(pos + Vector3.new(0, 5, 0))
              end)
-             task.wait(0.6)
+             task.wait(0.5)
          end
      end
  
