@@ -52,26 +52,33 @@ task.spawn(function()
 end)
  
  
- local player = game.Players.LocalPlayer
- local camera = workspace.CurrentCamera
- 
- local moveSpeed = 8 -- Increased speed for faster oscillation
- local amplitude = 6 -- Adjust the range of movement
- local time = 0 -- Keeps track of time for oscillation
- 
- -- Ensure camera stays in first-person mode
- camera.CameraType = Enum.CameraType.Custom
- player.CameraMode = Enum.CameraMode.LockFirstPerson
- 
- -- Oscillate the camera's orientation
- game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
-     time = time + deltaTime
-     local xRotation = math.sin(time * moveSpeed) * amplitude
-     local yRotation = math.cos(time * moveSpeed) * amplitude
-     
-     local currentCFrame = camera.CFrame
-     camera.CFrame = currentCFrame * CFrame.Angles(math.rad(yRotation), math.rad(xRotation), 0)
- end)
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+local verticalSpeed = 20 -- Speed for upward and downward motion
+local horizontalSpeed = 10 -- Speed for rightward motion
+local verticalAmplitude = 10 -- Range of vertical movement
+local horizontalAmplitude = 15 -- Range of horizontal movement
+local time = 0 -- Keeps track of time for oscillation
+
+-- Ensure camera stays in first-person mode
+camera.CameraType = Enum.CameraType.Custom
+player.CameraMode = Enum.CameraMode.LockFirstPerson
+
+-- Oscillate the camera's orientation
+game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+    time = time + deltaTime * 2 -- Make the motion extremely fast
+
+    -- Fast upward and downward motion
+    local xRotation = math.sin(time * verticalSpeed) * verticalAmplitude
+
+    -- Fast rightward motion with slight leftward correction (never fully left)
+    local yRotation = math.abs(math.cos(time * horizontalSpeed)) * horizontalAmplitude
+
+    -- Apply the new rotations to the camera
+    local currentCFrame = camera.CFrame
+    camera.CFrame = currentCFrame * CFrame.Angles(math.rad(xRotation), math.rad(yRotation), 0)
+end)
  
  local pathPoints = {
      Vector3.new(13.66, 120, 29620.67), Vector3.new(-15.98, 120, 28227.97),
