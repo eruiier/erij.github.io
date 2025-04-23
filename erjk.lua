@@ -148,19 +148,15 @@ spawn(function()
         task.wait(17 - (tick() - startTime))
     end
 
-    pcall(function()
-        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/eruiier/vampire.github.io/refs/heads/main/chair.lua"))()
-        local loadFunction2 = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
-        if not loadFunction then
-            print("Loadstring returned nil")
-        else
-            loadFunction()
-        end
-        if loadFunction2 then
-            loadFunction2()
-        end
-    end)
-    task.wait(5)
+     pcall(function()
+          local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
+          if not loadFunction then
+              print("Loadstring returned nil")
+          else
+              loadFunction()
+          end
+      end)
+      task.wait(5)
 
     -- Start moving to bonds in reverse order
     if #foundBonds > 0 then
