@@ -172,8 +172,8 @@ end
  
      scanConn:Disconnect()
  
-     if tick() - startTime < 17 then
-         task.wait(17 - (tick() - startTime))
+     if tick() - startTime < 22 then
+         task.wait(22 - (tick() - startTime))
      end
  
      pcall(function()
