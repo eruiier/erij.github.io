@@ -29,7 +29,7 @@ end)
 
 -- Bond collection (delayed by 25 seconds)
 task.spawn(function()
-    task.wait(22) -- Wait 25 seconds before starting bond collection
+    task.wait(27) -- Wait 25 seconds before starting bond collection
 
     while true do
         task.wait(0.3) -- Check every 0.3 seconds
@@ -172,19 +172,26 @@ end
  
      scanConn:Disconnect()
  
-     if tick() - startTime < 22 then
-         task.wait(22 - (tick() - startTime))
+     if tick() - startTime < 27 then
+         task.wait(27 - (tick() - startTime))
      end
  
-     pcall(function()
-         local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
-         if not loadFunction then
-             print("Loadstring returned nil")
-         else
-             loadFunction()
-         end
-     end)
-     task.wait(5)
+    pcall(function()
+        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
+        if not loadFunction then
+            print("Loadstring returned nil")
+        else
+            loadFunction()
+        end
+    end)
+
+    task.wait(5)
+
+    local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
+    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+    print("Teleported to target position:", teleportTarget)
+
+    task.wait(4) -- Stay at teleport target for 4 seconds
  
      local collectStart = tick()
      while tick() - collectStart < 35 do
