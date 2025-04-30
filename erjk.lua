@@ -177,7 +177,7 @@ end
      end
  
     pcall(function()
-        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
+        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/hbjrev/vampirething.github.io/refs/heads/main/vampire.lua"))()
         if not loadFunction then
             print("Loadstring returned nil")
         else
