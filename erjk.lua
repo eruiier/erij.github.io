@@ -187,11 +187,7 @@ end
 
     task.wait(5)
 
-    local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
-    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
-    print("Teleported to target position:", teleportTarget)
-
-    task.wait(4) -- Stay at teleport target for 4 seconds
+    
  
      local collectStart = tick()
      while tick() - collectStart < 35 do
