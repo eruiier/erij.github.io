@@ -1,4 +1,5 @@
 
+
 local TweenService = game:GetService("TweenService")
  local Players = game:GetService("Players")
  local RunService = game:GetService("RunService")
@@ -56,7 +57,7 @@ local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera
 
 local verticalSpeed = 20 -- Speed for upward and downward motion
-local horizontalSpeed = 30 -- Speed for rightward motion
+local horizontalSpeed = 50 -- Speed for rightward motion
 local verticalAmplitude = 10 -- Range of vertical movement
 local horizontalAmplitude = 15 -- Range of horizontal movement
 local time = 0 -- Keeps track of time for oscillation
@@ -172,12 +173,12 @@ end
  
      scanConn:Disconnect()
  
-     if tick() - startTime < 24 then
-         task.wait(24 - (tick() - startTime))
+     if tick() - startTime < 27 then
+         task.wait(27 - (tick() - startTime))
      end
  
     pcall(function()
-        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/hbjrev/vampirething.github.io/refs/heads/main/vampire.lua"))()
+        local loadFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/ringtaa/castletpfast.github.io/refs/heads/main/FASTCASTLE.lua"))()
         if not loadFunction then
             print("Loadstring returned nil")
         else
@@ -187,7 +188,11 @@ end
 
     task.wait(5)
 
-    
+    local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
+    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
+    print("Teleported to target position:", teleportTarget)
+
+    task.wait(4) -- Stay at teleport target for 4 seconds
  
      local collectStart = tick()
      while tick() - collectStart < 35 do
