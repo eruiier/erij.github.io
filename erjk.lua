@@ -28,6 +28,54 @@ task.spawn(function()
     end
 end)
 
+local bondCount = 0
+local bondSet = {}
+
+-- Create GUI for tracking bonds
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+local BondLabel = Instance.new("TextLabel")
+BondLabel.Parent = ScreenGui
+BondLabel.Size = UDim2.new(0, 200, 0, 50)
+BondLabel.Position = UDim2.new(0.5, -100, 0.1, 0)
+BondLabel.BackgroundTransparency = 0.5
+BondLabel.TextScaled = true
+BondLabel.TextColor3 = Color3.new(1, 1, 1)
+BondLabel.Text = "Bonds Discovered: 0"
+
+-- Function to update bond count dynamically
+local function updateBondCount()
+    for _, item in pairs(workspace.RuntimeItems:GetChildren()) do
+        if item:IsA("Model") and item.Name == "Bond" and not bondSet[item] then
+            bondSet[item] = true
+            bondCount += 1
+            BondLabel.Text = "Bonds Discovered: " .. bondCount
+        end
+    end
+end
+
+-- Continuously scan for bonds and update the GUI
+task.spawn(function()
+    while true do
+        updateBondCount()
+        task.wait(0.3) -- Update every 0.5 seconds
+    end
+end)
+
+-- Final display on completion
+task.spawn(function()
+    -- Assuming completion happens after bond collection phase ends
+    task.wait(27) -- Example: Wait for 35 seconds to simulate "completion"
+    BondLabel.Text = "Final Bonds Discovered: " .. bondCount
+    BondLabel.BackgroundColor3 = Color3.new(0, 1, 0) -- Green to indicate completion
+end)
+
+
+
+
+
+
 -- Bond collection (delayed by 25 seconds)
 task.spawn(function()
     task.wait(27) -- Wait 25 seconds before starting bond collection
@@ -68,7 +116,7 @@ player.CameraMode = Enum.CameraMode.LockFirstPerson
 
 -- Oscillate the camera's orientation
 game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
-    time = time + deltaTime * 2 -- Make the motion extremely fast
+    time = time + deltaTime * 4 -- Make the motion extremely fast
 
     -- Fast upward and downward motion
     local xRotation = math.sin(time * verticalSpeed) * verticalAmplitude
@@ -188,11 +236,13 @@ end
 
     task.wait(5)
 
-    local teleportTarget = Vector3.new(147.79, 5.77, 29981.89)
-    game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(teleportTarget))
-    print("Teleported to target position:", teleportTarget)
+pcall(function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ringtaa/train.github.io/refs/heads/main/train.lua'))()
+end)
 
-    task.wait(4) -- Stay at teleport target for 4 seconds
+task.wait(4) -- Ensure a 4-second delay after loading the train script before any other actions.
+
+
  
      local collectStart = tick()
      while tick() - collectStart < 35 do
