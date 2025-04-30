@@ -56,7 +56,7 @@ local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera
 
 local verticalSpeed = 20 -- Speed for upward and downward motion
-local horizontalSpeed = 10 -- Speed for rightward motion
+local horizontalSpeed = 30 -- Speed for rightward motion
 local verticalAmplitude = 10 -- Range of vertical movement
 local horizontalAmplitude = 15 -- Range of horizontal movement
 local time = 0 -- Keeps track of time for oscillation
